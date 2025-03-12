@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zodiac Sign Finder</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Zodiac Sign Finder</h1>
+        <form method="POST">
+            <label for="name">Enter your name:</label>
+            <input type="text" id="name" name="name" placeholder="Your Name" required>
+
+            <label for="dob">Enter your date of birth (DD-MM-YYYY):</label>
+            <input type="text" id="dob" name="dob" placeholder="DD-MM-YYYY" required>
+
+            <button type="submit">Find My Sign</button>
+        </form>
+
+        {% if result %}
+            {% if result.error %}
+                <p class="error">{{ result.error }}</p>
+            {% else %}
+                <div class="result">
+                    <h2>Hello, {{ result.name }}!</h2>
+                    <h2>Your Zodiac Sign: {{ result.sign }}</h2>
+                    <p><strong>Traits:</strong> {{ result.traits }}</p>
+                    <p><strong>Best Compatibility:</strong> {{ result.compatibility }}</p>
+                    <p><strong>Lucky Color:</strong> {{ result.lucky_color }}</p>
+                    <p><strong>Lucky Day:</strong> {{ result.lucky_day }}</p>
+                </div>
+            {% endif %}
+        {% endif %}
+    </div>
+</body>
+</html>
